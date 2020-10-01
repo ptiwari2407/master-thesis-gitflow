@@ -79,7 +79,7 @@ model.
 
 because all words have unique representation to each other, we risk loss of information hidden among relations between words in word-embedding space, 
 because we attempt to move facets to a high density area of space, leaving the remainder
-of space sparse. Hence, we distort the relation among words due to such change in representation and end up compromising the efficiency of word-embeddings model.
+of space sparse. Hence, we distort the relation among words due to such change in representation and end up compromising the efficiency of word-embeddings model itself.
 So, exisiting word-embeddings model are not suitable for facet generation tasks.
 
 
@@ -87,58 +87,6 @@ So, exisiting word-embeddings model are not suitable for facet generation tasks.
 
 
 
-
-
-
-Job 
-
-About myslef ?
-
-Hallo, ich heiße Prem Tiwari. Ich komme aus Indien. Gerade studiere ich in der Bauhaus Universität, Weimar. Ich bin kurz vor dem Abschluss meiner Masterarbeit. 
-Beruflich, bin ich ein Datawissenschaftler, der sich auf NLP und Time-Series modelle spezialisiert hat. Python ist meine "Mutter-sprache" in programmieren welt. 
-ich verstehe jede datawissenschaftliche Aufgabe an sich ein großes Spektrum hat, um Data-Engineering, data-science und Deployment.  
-Deschalb habe ich mich am Ende der Datawissenschaft in Beiden Bereichen geschult - allerdings mehr in Data Engineering als Deployment. 
-Ich kann arbeite mit Data warehousing technologies wie ETL im Cloud (erfahrung mit google-cloud). 
-ich habe mich in jeder Technologie versucht, die es gibt, von parallel cloud computing, über Web-development bis hin zu Block-chain.
-Wie sagt man es in Deutsch , "Intangible asset" ? I am your go to guy, when you are thinking about adoption of new technology for your firm. 
-
-
-
-"In the last interview, when I mentioned that my thesis uses Wordnet and word embeddings to do IR and SW(semantic web), your reaction was,
-that it is theoretical. But I would like to add that in data-science literature, industry and academy are not far apart.
-
-And working with different types of technologies within the NLP segement, gives you a variety of tool that can be put into
-action when considering its application to a use-case. So, my experience in both practical aspect(in terms of industry) and theoretical 
-aspect (in terms of academics) [IR ] gives me a background to tackle any challenge from the view-point it is offered."
-
-
-Only difference between academy and industry is the approach. 
-I understand that in industry, things progress by version approach. There is an inclination to produce tangible working aspect at earliest and
-then improve upon if need be for the better version. Whereas in academy, it can take many forms, one can work on many different aspects of a
-single problem simultaneously.
-And admitting to your concerns, I understand the workings or process which goes-on in development."
-
-
-Also, depends how your product is going to be integrated into client system.
-	1. if the application is source hungry and data-intensive, and results have to be produced in a swift manner, 
-		then development will take time and you would have to hire an engineer in equivalence with google's competency. (and not only 1 and many of them).
-	2. if the application is data-intensive but calculations/analysis are to be presented not continuously, say every 15 minutes or more, then 1 engineer is enough 
-		and I think for this purpose, I am you guy with this apt amount of skill-set.
-
-1. Difference between a google's data scientist and me :
-if we use a scoring system 0 being worst and 10 being best, the task of data-scientist could be divided into two.
-	1. Coding [ if a google's data scientist scores 9/10 out of 10, here I will score a 7/8]
-	2. Understanding the underlying algorithm and researching new technologies to accommodate the results. [Here its dependent on the tasks and familiarity 
-		with variable segments in the data-scientist industry]. [I will score the same as them, because of inherent interests in interdisplinary segemnts
-		I search, study and accomodate these results in my day-to-day experience].
-
-
-
-I am excited and want to be in this field. I am like a sponge, i absorb knowledge like it at any instance. I have been trying to break in this field but I 
-am all over the places because of no seemingly correct direction. If I am at your place, with correct direction you shall see that I am learning 10% faster than 
-any of your employee working. Infact, i am ready to this extent, that I will work first 2 months on any salary you see fit and then you can decide for yourself.
-
-I have confidence in myself and I need you to put your confidence in me and see the result yourselves.
 
 
 
