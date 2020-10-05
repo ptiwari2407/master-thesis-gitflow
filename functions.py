@@ -1,5 +1,6 @@
 import gensim.downloader as api
-wv = api.load('word2vec-google-news-300')
+# wv = api.load('word2vec-google-news-300')
+
 
 
 #Load other necessary libraries
@@ -7,6 +8,7 @@ import pandas as pd
 import json
 import numpy as np
 from math import factorial as f
+import random
 
 
 def CountFrequency(my_list):
@@ -50,13 +52,39 @@ def percentage_accuracy(x,y):
     return ((x/(x+y))*100)
 # Load both the files
 
+def print_report(word_not_in_vocab, correct_pred, false_pred, pos):
+    if (pos==0):
+        print("Case 1: When 1st word of pair is *support* and 2nd word is queried along with a random word")
+    else:
+        print("Case 2: When 2nd word of pair is *support* and 1st word is queried along with a random word")
+    print("Accuracy for correct predictions is: %.4f" % percentage_accuracy(len(correct_pred), len(false_pred)))
+    print("Number of correct predictions is: %d" % len(correct_pred))
+    print("Number of incorrect predictions is: %d" % len(false_pred))
+    print("Number of words in synset pair not found in model is: %d" % len(word_not_in_vocab))
+    print(" ")
 
-def similarity_check_1(pair, rand_list, pos=0):
+
+def similarity_check_Word2Vec(pair, rand_list, pos=0):
     """
     1. This performs cosine similarity analysis between 1st word of the pair as support and 2nd word of pair as queried : True
     2. This performs cosine similarity analysis between 1st word of the pair and random word queried as False
     3. word_not_in_vocab
     """
+    wv = api.load('word2vec-google-news-300')
+    # allow only those random words that are in wv.vocab
+    rand_list_wv = []
+    for item in rand_list:
+        if item in wv.vocab:
+            rand_list_wv.append(item)
+
+    rand_list = rand_list_wv
+    # Generate the number of random words on the fly and equal to length of the pair
+    np.random.seed(412)
+    r_index = np.random.randint(low=0, high=len(rand_list), size=len(pair))
+    ohne_phrase = pd.Series(rand_list)
+    rand_list = (list(ohne_phrase[r_index]))
+
+    # Here begins the real work
     word_not_in_vocab = list()
     correct_pred = list()
     false_pred = list()
@@ -75,5 +103,96 @@ def similarity_check_1(pair, rand_list, pos=0):
                 false_pred.append(rand_sim)
         else:
             word_not_in_vocab.append(x)
+    print_report(word_not_in_vocab, correct_pred, false_pred, pos)
+    return word_not_in_vocab, correct_pred, false_pred
 
-    return (word_not_in_vocab, correct_pred, false_pred)
+
+
+def similarity_check_Fasttext(pair, rand_list, pos=0):
+    """
+    1. This performs cosine similarity analysis between 1st word of the pair as support and 2nd word of pair as queried : True
+    2. This performs cosine similarity analysis between 1st word of the pair and random word queried as False
+    3. word_not_in_vocab
+    """
+    wv = api.load('fasttext-wiki-news-subwords-300')
+    # allow only those random words that are in wv.vocab
+    rand_list_wv = []
+    for item in rand_list:
+        if item in wv.vocab:
+            rand_list_wv.append(item)
+
+    rand_list = rand_list_wv
+    # Generate the number of random words on the fly and equal to length of the pair
+    np.random.seed(412)
+    r_index = np.random.randint(low=0, high=len(rand_list), size=len(pair))
+    ohne_phrase = pd.Series(rand_list)
+    rand_list = (list(ohne_phrase[r_index]))
+
+    # Here begins the real work
+    word_not_in_vocab = list()
+    correct_pred = list()
+    false_pred = list()
+
+    for x,y in zip(pair, rand_list):
+        support = x[pos]                  #Given word
+        query_T = x[1-pos]                  #True Queried
+        query_F = y                     #False Queried
+
+        if (support in wv.vocab and query_T in wv.vocab):
+            syn_sim = wv.n_similarity([support], [query_T])
+            rand_sim = wv.n_similarity([support], [query_F])
+            if(syn_sim > rand_sim):
+                correct_pred.append(syn_sim)
+            else:
+                false_pred.append(rand_sim)
+        else:
+            word_not_in_vocab.append(x)
+    print_report(word_not_in_vocab, correct_pred, false_pred, pos)
+    return word_not_in_vocab, correct_pred, false_pred
+
+
+
+def similarity_check_Glove_wiki(pair, rand_list, pos=0):
+    """
+    1. This performs cosine similarity analysis between 1st word of the pair as support and 2nd word of pair as queried : True
+    2. This performs cosine similarity analysis between 1st word of the pair and random word queried as False
+    3. word_not_in_vocab
+    """
+    wv = api.load('glove-wiki-gigaword-300')
+    # allow only those random words that are in wv.vocab
+    rand_list_wv = []
+    for item in rand_list:
+        if item in wv.vocab:
+            rand_list_wv.append(item)
+
+    rand_list = rand_list_wv
+    # Generate the number of random words on the fly and equal to length of the pair
+    np.random.seed(412)
+    r_index = np.random.randint(low=0, high=len(rand_list), size=len(pair))
+    ohne_phrase = pd.Series(rand_list)
+    rand_list = (list(ohne_phrase[r_index]))
+
+    # Here begins the real work
+    word_not_in_vocab = list()
+    correct_pred = list()
+    false_pred = list()
+
+    for x,y in zip(pair, rand_list):
+        support = x[pos]                  #Given word
+        query_T = x[1-pos]                  #True Queried
+        query_F = y                     #False Queried
+
+        if (support in wv.vocab and query_T in wv.vocab):
+            syn_sim = wv.n_similarity([support], [query_T])
+            rand_sim = wv.n_similarity([support], [query_F])
+            if(syn_sim > rand_sim):
+                correct_pred.append(syn_sim)
+            else:
+                false_pred.append(rand_sim)
+        else:
+            word_not_in_vocab.append(x)
+    print_report(word_not_in_vocab, correct_pred, false_pred, pos)
+    return word_not_in_vocab, correct_pred, false_pred
+
+
+

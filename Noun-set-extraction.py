@@ -7,8 +7,8 @@ from nltk.corpus import wordnet as wn
 from functions import combination, generate_combination_pair
 
 # Loading the word-vectors
-# import gensim.downloader as api
-# wv = api.load('word2vec-google-news-300')
+import gensim.downloader as api
+wv = api.load('word2vec-google-news-300')
 
 
 
