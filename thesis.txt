@@ -1,0 +1,94 @@
+************************************************************Important************************************************************
+1. make Graphs on statistical analysis of wordnet
+e.g.
+1. Number of nouns, verbs etc.
+2. Number of single, multiple phrases in word-net
+3. Number of Hypernyms structure in wordNet.
+
+
+************************************************************Important************************************************************
+"StatisticAL SIMILARITY  bin design"
+
+50 % cosine similarity belongs to bin 5
+63 % cosine similiarity belongs to bin 7 and so on..
+
+What does this indicates?
+We will be able to see how the similarity is mapped across from WordNet to word-embeddings and how this implied shift can bring 
+improvement in word-embeddings for the tasks of facet-generation.
+
+
+************************************************************Important************************************************************
+
+Logic 1
+
+The word vector does not responds to vocabulary that it has not been trained on. For example some scientific words like
+"heterotroph" : 
+
+Does not accept multiple words like cross-fertilization, this denotes "", which is a term in itself 
+
+ques 2:
+
+BUt why, do we need to go one level down adding hypernyms and hyponyms ?
+Ans: Because, facet generation tasks include not only suggesting facets which lie in the immediate vicinity, rather generating some
+specific facets as well, which could/should be generated from those root facets.
+
+
+
+************************************************************Important************************************************************
+3 diagrams for every startegy design and how they work.
+
+************************************************************Important************************************************************
+
+Further Research Possible
+1. do Wordnet Embeddings and then transfer wordnet embeddings to Word2vec.
+
+Two papers include:
+1. (Wordnet Embeddings)Saedi, Chakaveh, António Branco, João António Rodrigues and João Ricardo Silva, 2018, "WordNet Embeddings", In Proceedings, 
+   3rd Workshop on Representation Learning for Natural Language Processing (RepL4NLP), 56th Annual Meeting of the Association for Computational Linguistics, 15-20 July 2018, Melbourne, Australia.
+2. Rajendra Banjade, Nabin Maharjan, Dipesh Gautam, Vasile Rus handling Missing Words by Mapping across word vector representations.
+
+************************************************************Important************************************************************
+
+
+
+
+
+
+
+
+Understanding similarity distribution among facets in word embeddigs model.
+All the experiments are performed for same number of dimensions = 300. 
+
+
+Are cup or coffee similar or only associated? In a word-embedding model, when asked for facets from a word-embedding 
+model both associated words and similar words are suggested, because similarity here is learned through association. But association nevertheless,
+does not guarantee similarity.
+Even though fasttext has greater accuracy and better similarity distribution favoring facets, when asked for facets, being a 
+word-embedding model will return both association and similarity.
+
+Since, there is almost similar Gaussian distribution in different forms of word-embeddings model,
+We can not set general threshold of similarity in different models. For example, you cannot say similarity score of 0.7 or greater is a better model
+higher which indirectly imply, we can not ask for top N words for facets from word-embeddings model. 
+
+much meaning will be lost with respec
+
+# I will calculate variance 
+What happens if this universality of similarity expressed through gaussian Distribution is disturbed to accommodate facets?
+By doing so, we are changing the relation itself, not just among facets(for purpose of improving facet generation) but also with respect to other words that are present in the 
+model. 
+
+because all words have unique representation to each other, we risk loss of information hidden among relations between words in word-embedding space, 
+because we attempt to move facets to a high density area of space, leaving the remainder
+of space sparse. Hence, we distort the relation among words due to such change in representation and end up compromising the efficiency of word-embeddings model itself.
+So, exisiting word-embeddings model are not suitable for facet generation tasks.
+
+
+
+
+
+
+
+
+
+
+ 
