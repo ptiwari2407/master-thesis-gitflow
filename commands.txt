@@ -1,0 +1,97 @@
+***********************Kafka RELATED**************************************************
+https://www.youtube.com/watch?v=3XjfYH5Z0f0
+1. Navigate to where kafka is, Run the cmd over there
+Start the zookeeper using the following commands. Check that bin is there and all that
+
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+Check if that is running on the port:2181
+
+2. Navigate to where kafka is in other terminal, Run cmd over there
+Start the kafka-server using the following commands. Check that bin is there and all that
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+Check if that is running on the port:9092
+
+
+Or TRY THIS: THIS works perfect
+https://www.javaer101.com/en/article/12057273.html
+3. Create topics test
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+
+4. List Topics
+kafka-topics.bat --list --zookeeper localhost:2181
+
+5. Run consumer-producer on windows console
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic TOPIC_NAME --from-beginning
+
+
+
+
+
+
+
+
+***********************PYTHON RELATED**************************************************
+
+pip install -r requirements.txt
+
+
+
+pipreqs --ABSOLUTE FILE PATH-- to generate requirements.txt (Maybe add to dockerfile)
+
+
+
+********** How to create virtualenv in windows******************************************
+1. Install different versions of python from https://www.python.org/downloads/windows/
+Installed:
+-3.9 C:\python\python39\python.exe
+-3.8
+-3.7: C:\python\python37\python.exe
+
+2. **Path** where the above these python versions are installed and feed it to virtualenv being created
+virtualenv v_i_r_t_u_a_l_e_n_v_n_a_m_e -p **Path**
+virtualenv prod_ATE -p C:\python\python37\python.exe
+
+3. Store the environment in the different place otherwise so many problems !!
+Hence, created a directory in C:\python\virtual_environments
+
+4. Remember to activate the environment in python and install all the requirements.txt
+
+
+
+
+
+
+
+
+*************************LINUX RELATED*************************************************
+
+
+rm -r dirname      // to delete a directory recursively
+
+
+
+
+
+
+
+
+
+******************GITHUB RELATED******************************************************
+git clone <link>         //to clone through ssh
+
+
+
+
+
+
+
+*******************DOCKER RELATED*****************************************************
+INSTALLATION: WSL 2 install -> Docker Desktop -> connect WSL 2 and Docker desktop
+
+Docker desktop allows you to run the docker image when WSL 2 is enabled both through linux and windows containers. So, if you create 
+an image in windows, you can run the instance on both WSL(ubuntu) and windows and vice-versa. 
+Hence, development inside a container can be easily shipped for production.
+
+1. Docker image is created when you create a docker-file. In the docker-file all the dependecies are mentioned.
+2. Whenever you run a docker image, it runs as a docker container. Docker container is a run-time instance of docker image.
